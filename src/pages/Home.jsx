@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HandleChangeFuntionsHome from '../HandleChangeFunctions/FunctionsHome';
 import HandleClickFuntionsHome from '../HandleClickFunctions/FunctionsHome';
 import ProductPreview from '../components/ProductPreview';
-import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 
 class Home extends React.Component {
@@ -19,9 +19,6 @@ class Home extends React.Component {
     const { searchInput, resultSearch } = this.state;
     return (
       <section>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
         <input
           data-testid="query-input"
           type="text"
@@ -37,6 +34,15 @@ class Home extends React.Component {
           Pesquisar
         </button>
         <div>
+          <Categories />
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <button>
+            <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
+          </button>
+        </div>
+        <div>
           {resultSearch !== '' && (
             resultSearch.length === 0
               ? (<p>Nenhum produto foi encontrado</p>)
@@ -51,15 +57,6 @@ class Home extends React.Component {
           )}
         </div>
       </section>
-      <div>
-        <Categories />
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <button>
-          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
-        </button>
-      </div>
     );
   }
 }
