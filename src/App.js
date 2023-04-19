@@ -20,5 +20,5 @@ function App() {
     </div>
   );
 }
-// Initial commit
+// Initial commit.
 export default App;
