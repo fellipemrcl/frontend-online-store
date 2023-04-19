@@ -28,13 +28,14 @@ class Home extends React.Component {
         />
         <button
           data-testid="query-button"
+          name={ `q=${searchInput}` }
           type="button"
           onClick={ this.handleSearchButtonClick }
         >
           Pesquisar
         </button>
         <div>
-          <Categories />
+          <Categories onClick={ this.handleSearchButtonClick } />
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
