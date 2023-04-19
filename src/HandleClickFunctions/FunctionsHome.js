@@ -1,9 +1,8 @@
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 const HandleClickFuntionsHome = {
-  handleSearchButtonClick: async function handleSearchButtonClick() {
-    const { searchInput } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(searchInput);
+  handleSearchButtonClick: async function handleSearchButtonClick({ target: { name } }) {
+    const { results } = await getProductsFromCategoryAndQuery(name);
     this.setState({
       resultSearch: [...results],
     });
