@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <p>teste</p>
-      </div>
+      <Switch>
+        <Route path="/" component={ Home } />
+      </Switch>
     );
   }
 }
-// Initial commit.
+
 export default App;
