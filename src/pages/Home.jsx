@@ -2,6 +2,8 @@ import React from 'react';
 import HandleChangeFuntionsHome from '../HandleChangeFunctions/FunctionsHome';
 import HandleClickFuntionsHome from '../HandleClickFunctions/FunctionsHome';
 import ProductPreview from '../components/ProductPreview';
+import { Link } from 'react-router-dom';
+import Categories from '../components/Categories';
 
 class Home extends React.Component {
   state = {
@@ -49,6 +51,15 @@ class Home extends React.Component {
           )}
         </div>
       </section>
+      <div>
+        <Categories />
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+        <button>
+          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
+        </button>
+      </div>
     );
   }
 }
