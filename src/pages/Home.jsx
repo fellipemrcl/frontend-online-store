@@ -47,12 +47,10 @@ class Home extends React.Component {
           {resultSearch !== '' && (
             resultSearch.length === 0
               ? (<p>Nenhum produto foi encontrado</p>)
-              : (resultSearch.map(({ id, title, thumbnail, price }) => (
+              : (resultSearch.map((result) => (
                 <ProductPreview
-                  key={ id }
-                  productImage={ thumbnail }
-                  productName={ title }
-                  productPrice={ price }
+                  product={ result }
+                  key={ result.id }
                 />
               )))
           )}
