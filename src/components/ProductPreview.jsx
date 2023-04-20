@@ -13,7 +13,10 @@ class ProductPreview extends Component {
     const { product: { thumbnail, title, price, id } } = this.props;
     return (
       <div data-testid="product">
-        <Link to={ `/product-details/${id}` }>
+        <Link
+          data-testid="product-detail-link"
+          to={ `/product-details/${id}` }
+        >
           <img src={ thumbnail } alt={ title } />
           <p>{title}</p>
           <p>{price}</p>
