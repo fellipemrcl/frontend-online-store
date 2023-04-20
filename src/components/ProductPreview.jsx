@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 class ProductPreview extends Component {
   addToCartBtn = () => {
     const { product } = this.props;
-    const productString = JSON.stringify(product);
-    localStorage.setItem(product.id, productString);
+    const arrayCart = JSON.parse(localStorage.getItem('cart')) || [];
+    product.quantity = 1;
+    arrayCart.push(product);
+    const cartString = JSON.stringify(arrayCart);
+    localStorage.setItem('cart', cartString);
   };
 
   render() {
@@ -35,7 +38,14 @@ ProductPreview.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
-  }).isRequired,
+    quantity: PropTypes.number,
+  }),
+};
+
+ProductPreview.defaultProps = {
+  product: PropTypes.shape({
+    quantity: 1,
+  }),
 };
 
 export default ProductPreview;
