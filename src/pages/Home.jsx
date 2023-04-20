@@ -15,6 +15,8 @@ class Home extends React.Component {
 
   handleSearchButtonClick = HandleClickFuntionsHome.handleSearchButtonClick.bind(this);
 
+  // Teste no GitHub
+
   render() {
     const { searchInput, resultSearch } = this.state;
     return (

@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import ShoppingCartProduct from '../components/ShoppingCartProduct';
+import ShoppingCartFunctions from '../HandleClickFunctions/ShoppingCartFunctions';
 
 class ShoppingCart extends Component {
+  productCart = JSON.parse(localStorage.getItem('cart')) || [];
+
   state = {
-    cart: [],
+    cart: [...this.productCart],
   };
 
-  componentDidMount() {
-    const arrayCart = JSON.parse(localStorage.getItem('cart'));
-    if (arrayCart) {
-      this.setState({
-        cart: [...arrayCart],
-      });
-    }
-  }
+  clickBtnQuantity = ShoppingCartFunctions.clickBtnQuantity.bind(this);
+
+  deleteClick = ShoppingCartFunctions.deleteClick.bind(this);
 
   render() {
     const { cart } = this.state;
@@ -29,6 +27,8 @@ class ShoppingCart extends Component {
               price={ price }
               image={ thumbnail }
               quantity={ quantity }
+              clickBtnQuantity={ this.clickBtnQuantity }
+              clickBtnDelete={ this.deleteClick }
               quantityTotal={ product.available_quantity }
             />
           );

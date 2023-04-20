@@ -6,42 +6,64 @@ class ShoppingCartProduct extends Component {
     const { name,
       price,
       image,
-      quantity } = this.props;
+      id,
+      quantity,
+      quantityTotal,
+      clickBtnQuantity,
+      clickBtnDelete,
+    } = this.props;
     return (
-      <div>
+      <div id={ id }>
         <button
           type="button"
           data-testid="remove-product"
-          // onClick={}
+          onClick={ clickBtnDelete }
         >
           Excluir
         </button>
         <img src={ image } alt={ name } />
-        <span>
+        <span
+          data-testid="shopping-cart-product-name"
+        >
           {name}
         </span>
         <button
           data-testid="product-decrease-quantity"
+          name="decreaseButton"
+          onClick={ clickBtnQuantity }
+          disabled={ quantity === 1 }
         >
           -
         </button>
-        <span>{quantity}</span>
+        <span
+          data-testid="shopping-cart-product-quantity"
+        >
+          {quantity}
+
+        </span>
         <button
+          name="increaseButton"
           data-testid="product-increase-quantity"
+          onClick={ clickBtnQuantity }
+          disabled={ (quantity === quantityTotal) }
         >
           +
         </button>
-        <span>{price}</span>
+        <span>{(price * quantity).toFixed(2)}</span>
       </div>
     );
   }
 }
 
 ShoppingCartProduct.propTypes = {
+  clickBtnDelete: PropTypes.func.isRequired,
+  clickBtnQuantity: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
+  quantityTotal: PropTypes.number.isRequired,
 };
 
 export default ShoppingCartProduct;
