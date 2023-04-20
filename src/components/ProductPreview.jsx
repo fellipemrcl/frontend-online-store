@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class ProductPreview extends Component {
-  addToCartBtn = () => {
-    const { product } = this.props;
+  addToCartBtn = (id) => {
+    const product = { productId: id };
     const arrayCart = JSON.parse(localStorage.getItem('cart')) || [];
     product.quantity = 1;
     arrayCart.push(product);
