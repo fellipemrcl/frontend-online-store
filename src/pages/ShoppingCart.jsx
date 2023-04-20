@@ -3,7 +3,7 @@ import ShoppingCartProduct from '../components/ShoppingCartProduct';
 import ShoppingCartFunctions from '../HandleClickFunctions/ShoppingCartFunctions';
 
 class ShoppingCart extends Component {
-  productCart = JSON.parse(localStorage.getItem('cart'));
+  productCart = JSON.parse(localStorage.getItem('cart')) || [];
 
   state = {
     cart: [...this.productCart],
