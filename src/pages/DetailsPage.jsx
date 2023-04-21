@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import ClickFunctions from '../ClickFunctions';
 
 class DetailsPage extends Component {
   state = {
@@ -12,18 +13,11 @@ class DetailsPage extends Component {
     invalid: false,
   };
 
+  clickBtnAddToCart = ClickFunctions.clickBtnAddToCart.bind(this);
+
   componentDidMount() {
     this.retrieveProduct();
   }
-
-  addToCartBtn = (id) => {
-    const product = { productId: id };
-    const arrayCart = JSON.parse(localStorage.getItem('cart')) || [];
-    product.quantity = 1;
-    arrayCart.push(product);
-    const cartString = JSON.stringify(arrayCart);
-    localStorage.setItem('cart', cartString);
-  };
 
   retrieveProduct = async () => {
     const { match: { params: { id } } } = this.props;
@@ -78,11 +72,11 @@ class DetailsPage extends Component {
                 {`${att.name}: ${att.value_name}`}
               </li>)) }
         </ul>
-        <button data-testid="shopping-cart-button">
-          <Link to="/shoppingcart">Carrinho</Link>
+        <button>
+          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
         </button>
         <button
-          onClick={ () => this.addToCartBtn(id) }
+          onClick={ () => this.clickBtnAddToCart(productInfo) }
           data-testid="product-detail-add-to-cart"
         >
           Adicionar ao carrinho

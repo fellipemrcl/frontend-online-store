@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ShoppingCartProduct from '../components/ShoppingCartProduct';
-import ShoppingCartFunctions from '../HandleClickFunctions/ShoppingCartFunctions';
+import ClickFunctions from '../ClickFunctions';
 
 class ShoppingCart extends Component {
   productCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -9,9 +9,9 @@ class ShoppingCart extends Component {
     cart: [...this.productCart],
   };
 
-  clickBtnQuantity = ShoppingCartFunctions.clickBtnQuantity.bind(this);
+  clickBtnQuantity = ClickFunctions.clickBtnQuantity.bind(this);
 
-  deleteClick = ShoppingCartFunctions.deleteClick.bind(this);
+  clickBtnDelete = ClickFunctions.clickBtnDelete.bind(this);
 
   render() {
     const { cart } = this.state;
@@ -28,7 +28,7 @@ class ShoppingCart extends Component {
               image={ thumbnail }
               quantity={ quantity }
               clickBtnQuantity={ this.clickBtnQuantity }
-              clickBtnDelete={ this.deleteClick }
+              clickBtnDelete={ this.clickBtnDelete }
               quantityTotal={ product.available_quantity }
             />
           );
