@@ -72,8 +72,8 @@ class DetailsPage extends Component {
                 {`${att.name}: ${att.value_name}`}
               </li>)) }
         </ul>
-        <button data-testid="shopping-cart-button">
-          <Link to="/shoppingcart">Carrinho</Link>
+        <button>
+          <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
         </button>
         <button
           onClick={ () => this.clickBtnAddToCart(productInfo) }
