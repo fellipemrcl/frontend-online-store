@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HandleChangeFuntionsHome from '../HandleChangeFunctions/FunctionsHome';
-import HandleClickFuntionsHome from '../HandleClickFunctions/FunctionsHome';
+import ChangeFuntions from '../ChangeFuntions';
+import ClickFunctions from '../ClickFunctions';
 import ProductPreview from '../components/ProductPreview';
 import Categories from '../components/Categories';
 
@@ -11,9 +11,9 @@ class Home extends React.Component {
     resultSearch: '',
   };
 
-  handleSearchInputChange = HandleChangeFuntionsHome.handleSearchInputChange.bind(this);
+  changeIptSearch = ChangeFuntions.changeIptSearch.bind(this);
 
-  handleSearchButtonClick = HandleClickFuntionsHome.handleSearchButtonClick.bind(this);
+  clickBtnSearch = ClickFunctions.clickBtnSearch.bind(this);
 
   // Teste no GitHub
 
@@ -26,18 +26,18 @@ class Home extends React.Component {
           type="text"
           value={ searchInput }
           placeholder="O Que Você Deseja Hoje?"
-          onChange={ this.handleSearchInputChange }
+          onChange={ this.changeIptSearch }
         />
         <button
           data-testid="query-button"
           name={ `q=${searchInput}` }
           type="button"
-          onClick={ this.handleSearchButtonClick }
+          onClick={ this.clickBtnSearch }
         >
           Pesquisar
         </button>
         <div>
-          <Categories onClick={ this.handleSearchButtonClick } />
+          <Categories onClick={ this.clickBtnSearch } />
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>

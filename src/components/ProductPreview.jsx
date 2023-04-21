@@ -1,19 +1,13 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ClickFunctions from '../ClickFunctions';
 
 class ProductPreview extends Component {
-  addToCartBtn = (id) => {
-    const product = { productId: id };
-    const arrayCart = JSON.parse(localStorage.getItem('cart')) || [];
-    product.quantity = 1;
-    arrayCart.push(product);
-    const cartString = JSON.stringify(arrayCart);
-    localStorage.setItem('cart', cartString);
-  };
+  clickBtnAddToCart = ClickFunctions.clickBtnAddToCart.bind(this);
 
   render() {
-    const { product: { thumbnail, title, price, id } } = this.props;
+    const { product, product: { thumbnail, title, price, id } } = this.props;
     return (
       <div data-testid="product">
         <Link
@@ -25,7 +19,7 @@ class ProductPreview extends Component {
           <p>{price}</p>
         </Link>
         <button
-          onClick={ this.addToCartBtn }
+          onClick={ () => this.clickBtnAddToCart(product) }
           data-testid="product-add-to-cart"
         >
           Adicionar ao carrinho

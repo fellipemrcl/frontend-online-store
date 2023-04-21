@@ -1,4 +1,12 @@
-const ShoppingCartFunctions = {
+import { getProductsFromCategoryAndQuery } from './services/api';
+
+const ClickFunctions = {
+  clickBtnSearch: async function clickBtnSearch({ target: { name } }) {
+    const { results } = await getProductsFromCategoryAndQuery(name);
+    this.setState({
+      resultSearch: [...results],
+    });
+  },
   clickBtnQuantity: function clickBtnQuantity({ target }) {
     const productId = target.parentNode.id;
     const { name } = target;
@@ -19,7 +27,7 @@ const ShoppingCartFunctions = {
       cart: productsCard,
     });
   },
-  deleteClick: function deleteClick({ target }) {
+  clickBtnDelete: function clickBtnDelete({ target }) {
     const arrayCart = JSON.parse(localStorage.getItem('cart'));
     const productId = target.parentNode.id;
     const productsCard = arrayCart.filter(({ id }) => id !== productId);
@@ -29,6 +37,13 @@ const ShoppingCartFunctions = {
       cart: productsCard,
     });
   },
+  clickBtnAddToCart: function clickBtnAddToCart(product) {
+    const arrayCart = JSON.parse(localStorage.getItem('cart')) || [];
+    product.quantity = 1;
+    arrayCart.push(product);
+    const cartString = JSON.stringify(arrayCart);
+    localStorage.setItem('cart', cartString);
+  },
 };
 
-export default ShoppingCartFunctions;
+export default ClickFunctions;
