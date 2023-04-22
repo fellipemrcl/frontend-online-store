@@ -7,7 +7,16 @@ class ProductPreview extends Component {
   clickBtnAddToCart = ClickFunctions.clickBtnAddToCart.bind(this);
 
   render() {
-    const { product, product: { thumbnail, title, price, id } } = this.props;
+    const {
+      product,
+      product: {
+        thumbnail,
+        title,
+        price,
+        id,
+        shipping,
+      },
+    } = this.props;
     return (
       <div data-testid="product">
         <Link
@@ -15,6 +24,7 @@ class ProductPreview extends Component {
           to={ `/product-details/${id}` }
         >
           <img src={ thumbnail } alt={ title } />
+          {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>}
           <p>{title}</p>
           <p>{price}</p>
         </Link>
@@ -36,6 +46,9 @@ ProductPreview.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     quantity: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }),
   }),
 };
 
