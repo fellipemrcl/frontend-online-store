@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ShoppingCartProduct from '../components/ShoppingCartProduct';
 import ClickFunctions from '../ClickFunctions';
 
@@ -34,6 +35,18 @@ class ShoppingCart extends Component {
           );
         })
           : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        <button>
+          <Link
+            to={ {
+              pathname: '/checkout',
+              state: { cart },
+            } }
+            data-testid="checkout-products"
+          >
+            Finalizar compra
+
+          </Link>
+        </button>
       </section>
     );
   }
