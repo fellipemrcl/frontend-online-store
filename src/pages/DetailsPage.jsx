@@ -64,7 +64,7 @@ class DetailsPage extends Component {
       <div>
         <h2 data-testid="product-detail-name">{title}</h2>
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
-        {/* {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>} */}
+        {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>}
         <h3 data-testid="product-detail-price">{ price }</h3>
         <ul>
           Especificações:
