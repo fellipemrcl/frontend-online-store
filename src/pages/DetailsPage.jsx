@@ -38,17 +38,20 @@ class DetailsPage extends Component {
   onSubmit = (event) => {
     const { rating, text, email } = this.state;
     event.preventDefault();
-    if (!rating || !email || !text) {
+    const validateEmailRegex = /^\S+@\S+\.\S+$/;
+    if (!rating || validateEmailRegex.test(email) === false || !text) {
       this.setState({
         invalid: true,
       });
-    } else {
+    } else if (rating && validateEmailRegex.test(email) === true && text) {
       const { match: { params: { id } } } = this.props;
       const ratingObj = { email, text, rating };
       const ratingArr = JSON.parse(localStorage.getItem(id)) || [];
       ratingArr.push(ratingObj);
       const ratingString = JSON.stringify(ratingArr);
       localStorage.setItem(id, ratingString);
+      this.setState({ text: '', email: '', rating: '' });
+      this.setState({ invalid: false });
     }
   };
 
@@ -61,7 +64,7 @@ class DetailsPage extends Component {
       <div>
         <h2 data-testid="product-detail-name">{title}</h2>
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
-        {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>}
+        {/* {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>} */}
         <h3 data-testid="product-detail-price">{ price }</h3>
         <ul>
           Especificações:
@@ -86,14 +89,13 @@ class DetailsPage extends Component {
           <input
             type="email"
             name="email"
-            id=""
             onChange={ this.onChange }
             value={ email }
             data-testid="product-detail-email"
           />
           <textarea
+            required
             name="text"
-            id=""
             cols="10"
             rows="2"
             onChange={ this.onChange }
@@ -104,7 +106,6 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
-              value="1"
               onChange={ this.onChange }
               data-testid="1-rating"
             />
@@ -112,7 +113,6 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
-              value="2"
               onChange={ this.onChange }
               data-testid="2-rating"
             />
@@ -120,7 +120,6 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
-              value="3"
               onChange={ this.onChange }
               data-testid="3-rating"
             />
@@ -128,7 +127,6 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
-              value="4"
               onChange={ this.onChange }
               data-testid="4-rating"
             />
@@ -136,7 +134,6 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
-              value="5"
               onChange={ this.onChange }
               data-testid="5-rating"
             />
@@ -144,7 +141,6 @@ class DetailsPage extends Component {
           </label>
           <button
             type="submit"
-            // disabled={ !rating || !email || !text }
             data-testid="submit-review-btn"
             onClick={ this.onSubmit }
           >
