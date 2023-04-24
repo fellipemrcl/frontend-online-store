@@ -32,7 +32,7 @@ class DetailsPage extends Component {
     const { name, value } = target;
     this.setState({
       [name]: value,
-    });
+    }, () => console.log(this.state));
   };
 
   onSubmit = (event) => {
@@ -64,7 +64,7 @@ class DetailsPage extends Component {
       <div>
         <h2 data-testid="product-detail-name">{title}</h2>
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
-        {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>}
+        {/* {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>} */}
         <h3 data-testid="product-detail-price">{ price }</h3>
         <ul>
           Especificações:
@@ -106,6 +106,7 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
+              value="1"
               onChange={ this.onChange }
               data-testid="1-rating"
             />
@@ -113,6 +114,7 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
+              value="2"
               onChange={ this.onChange }
               data-testid="2-rating"
             />
@@ -120,6 +122,7 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
+              value="3"
               onChange={ this.onChange }
               data-testid="3-rating"
             />
@@ -127,6 +130,7 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
+              value="4"
               onChange={ this.onChange }
               data-testid="4-rating"
             />
@@ -134,6 +138,7 @@ class DetailsPage extends Component {
             <input
               type="radio"
               name="rating"
+              value="5"
               onChange={ this.onChange }
               data-testid="5-rating"
             />
