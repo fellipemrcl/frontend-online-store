@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ClickFunctions from '../ClickFunctions';
 
 class ProductPreview extends Component {
-  clickBtnAddToCart = ClickFunctions.clickBtnAddToCart.bind(this);
-
   render() {
     const {
       product,
@@ -16,6 +13,7 @@ class ProductPreview extends Component {
         id,
         shipping,
       },
+      clickBtnAddToCart,
     } = this.props;
     return (
       <div data-testid="product">
@@ -29,7 +27,7 @@ class ProductPreview extends Component {
           <p>{price}</p>
         </Link>
         <button
-          onClick={ () => this.clickBtnAddToCart(product) }
+          onClick={ () => clickBtnAddToCart(product) }
           data-testid="product-add-to-cart"
         >
           Adicionar ao carrinho
@@ -40,6 +38,7 @@ class ProductPreview extends Component {
 }
 
 ProductPreview.propTypes = {
+  clickBtnAddToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     thumbnail: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

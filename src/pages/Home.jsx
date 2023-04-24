@@ -15,8 +15,26 @@ class Home extends React.Component {
 
   clickBtnSearch = ClickFunctions.clickBtnSearch.bind(this);
 
+  clickBtnAddToCart = ClickFunctions.clickBtnAddToCart.bind(this);
+
+  componentDidMount() {
+    this.updateSizeCart();
+  }
+
+  updateSizeCart = function updateSizeCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartSize = cart.reduce((acc, { quantity }) => {
+      acc += quantity;
+      return acc;
+    }, 0);
+    localStorage.setItem('cartSize', cartSize);
+    this.setState({
+      cartSize,
+    });
+  };
+
   render() {
-    const { searchInput, resultSearch } = this.state;
+    const { searchInput, resultSearch, cartSize } = this.state;
     return (
       <section>
         <input
@@ -42,6 +60,7 @@ class Home extends React.Component {
           <button>
             <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
           </button>
+          <span data-testid="shopping-cart-size">{cartSize}</span>
         </div>
         <div>
           {resultSearch !== '' && (
@@ -49,6 +68,7 @@ class Home extends React.Component {
               ? (<p>Nenhum produto foi encontrado</p>)
               : (resultSearch.map((result) => (
                 <ProductPreview
+                  clickBtnAddToCart={ this.clickBtnAddToCart }
                   product={ result }
                   key={ result.id }
                 />
