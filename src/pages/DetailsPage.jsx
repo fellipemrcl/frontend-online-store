@@ -39,11 +39,11 @@ class DetailsPage extends Component {
     const { rating, text, email } = this.state;
     event.preventDefault();
     const validateEmailRegex = /^\S+@\S+\.\S+$/;
-    if (!rating || validateEmailRegex.test(email) === false || !text) {
+    if (!rating || validateEmailRegex.test(email) === false) {
       this.setState({
         invalid: true,
       });
-    } else if (rating && validateEmailRegex.test(email) === true && text) {
+    } else if (rating && validateEmailRegex.test(email) === true) {
       const { match: { params: { id } } } = this.props;
       const ratingObj = { email, text, rating };
       const ratingArr = JSON.parse(localStorage.getItem(id)) || [];
