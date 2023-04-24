@@ -32,7 +32,7 @@ class DetailsPage extends Component {
     const { name, value } = target;
     this.setState({
       [name]: value,
-    }, () => console.log(this.state));
+    });
   };
 
   onSubmit = (event) => {
@@ -59,12 +59,18 @@ class DetailsPage extends Component {
     const { match: { params: { id } } } = this.props;
     const ratings = JSON.parse(localStorage.getItem(id));
     const { productInfo, email, text, invalid,
-      productInfo: { title, price, thumbnail, attributes } } = this.state;
+      productInfo: { title, price, thumbnail, attributes, shipping } } = this.state;
     return (
       <div>
         <h2 data-testid="product-detail-name">{title}</h2>
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
-        {/* {shipping.free_shipping && <p data-testid="free-shipping">Frete Gratis</p>} */}
+        {shipping?.free_shipping && (
+          <p
+            data-testid="free-shipping"
+          >
+            Frete Gratis
+          </p>
+        )}
         <h3 data-testid="product-detail-price">{ price }</h3>
         <ul>
           Especificações:
