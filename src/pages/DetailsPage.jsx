@@ -59,7 +59,7 @@ class DetailsPage extends Component {
     const { match: { params: { id } } } = this.props;
     const ratings = JSON.parse(localStorage.getItem(id));
     const { productInfo, email, text, invalid,
-      productInfo: { title, price, thumbnail, attributes, shipping } } = this.state;
+      productInfo: { title, price, thumbnail, attributes } } = this.state;
     return (
       <div>
         <h2 data-testid="product-detail-name">{title}</h2>
