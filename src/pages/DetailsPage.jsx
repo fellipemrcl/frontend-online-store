@@ -17,7 +17,20 @@ class DetailsPage extends Component {
 
   componentDidMount() {
     this.retrieveProduct();
+    this.updateSizeCart();
   }
+
+  updateSizeCart = function updateSizeCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartSize = cart.reduce((acc, { quantity }) => {
+      acc += quantity;
+      return acc;
+    }, 0);
+    localStorage.setItem('cartSize', cartSize);
+    this.setState({
+      cartSize,
+    });
+  };
 
   retrieveProduct = async () => {
     const { match: { params: { id } } } = this.props;
@@ -58,7 +71,7 @@ class DetailsPage extends Component {
   render() {
     const { match: { params: { id } } } = this.props;
     const ratings = JSON.parse(localStorage.getItem(id));
-    const { productInfo, email, text, invalid,
+    const { productInfo, email, text, invalid, cartSize,
       productInfo: { title, price, thumbnail, attributes, shipping } } = this.state;
     return (
       <div>
@@ -85,6 +98,7 @@ class DetailsPage extends Component {
         <button>
           <Link to="/shoppingcart" data-testid="shopping-cart-button">Carrinho</Link>
         </button>
+        <span data-testid="shopping-cart-size">{cartSize}</span>
         <button
           onClick={ () => this.clickBtnAddToCart(productInfo) }
           data-testid="product-detail-add-to-cart"
