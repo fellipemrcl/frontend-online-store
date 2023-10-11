@@ -18,6 +18,16 @@ A partir dessas demandas, temos uma aplicação em que as pessoas usuárias pode
 - **JavaScript**: Linguagem de programação para a lógica da aplicação.
 - **Git e GitHub**: Usados para controle de versão e colaboração.
 
+## Estilização
+
+Neste momento, a estilização da aplicação ainda não foi completamente implementada, mas está em andamento. Planejamos estilizar a aplicação usando o [Tailwind CSS](https://tailwindcss.com/), uma poderosa ferramenta de estilização que facilita a criação de interfaces bonitas e responsivas.
+
+O Tailwind CSS permite uma abordagem altamente personalizável para a estilização, o que nos permitirá criar uma experiência visual atraente para os usuários da loja online. Estamos trabalhando ativamente nessa etapa e, em breve, você poderá ver a aplicação com uma aparência mais polida e profissional.
+
+Fique à vontade para acompanhar as atualizações no projeto para ver as melhorias na estilização à medida que avançamos no desenvolvimento.
+
+Se você é familiarizado com o Tailwind CSS ou deseja contribuir para a estilização, ficaríamos felizes em receber suas contribuições e sugestões. Junte-se a nós nesta jornada de criação de uma loja online incrível!
+
 ## Como Executar o Projeto
 
 ## **Clonar o repositório**:
