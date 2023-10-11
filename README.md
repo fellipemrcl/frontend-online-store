@@ -23,7 +23,7 @@ A partir dessas demandas, temos uma aplicação em que as pessoas usuárias pode
 ## **Clonar o repositório**:
 
 ```bash
-   git clone https://github.com/seu-usuario/front-end-online-store.git
+   git clone git@github.com:fellipemrcl/frontend-online-store.git
 ```
 ## **Instalar as dependências**:
 
